@@ -7,7 +7,7 @@ weight: 20
 
 If you want to access your TrueNAS SCALE directories from a VM, you must create a bridge interface for the VM to use. 
 
-Go to **Virtualization**, find the VM you will use to access TrueNAS storage, and toggle it off.
+Go to **Virtualization**, find the VM you will use to access TrueNAS storage, and toggle it off. Also go into **Apps** and **STOP** all Applications in docker, without those steps Network changes cannot be saved and after **Test Changes** step and all network configuration will be reverted.
 
 ![AccessNASfromVM1](/images/SCALE/AccessNASfromVM1.png "Toggle off VM")
 
@@ -33,6 +33,9 @@ Go to **Virtualization**, expand the VM you will use to access TrueNAS storage, 
 Select the new bridge interface from the **Nic to attach:** drop-down, then click **Save**.
 
 ![AccessNASfromVM5](/images/SCALE/AccessNASfromVM5.png "Save Network Changes")
+
+Also change **Interface** in each of your **Apps** installed in docker where you assigned host IP and interface so it will be assigned to **brX**.
+![image](https://user-images.githubusercontent.com/61471407/153705386-e2a59255-f246-481a-9cfe-04e9d2d642ff.png)
 
 You can now access your TrueNAS storage from the VM. You may have to set up [shares]({{< relref "/content/SCALE/Shares/_index.md" >}}) or [users]({{< relref "LocalUsers.md" >}}) with home directories to access certain files.
 
